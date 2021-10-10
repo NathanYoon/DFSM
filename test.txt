@@ -1,0 +1,30 @@
+in_str = input()
+macros = []
+macro = {}
+macro_started = False
+trim_str = in_str.strip()
+while trim_str != 'end': # this is a comment
+    list_of_commands = list(filter(None, in_str.split(' ')))
+    if 'macro' in list_of_commands:
+        macro['lines'] = [in_str]
+        macro_started = True
+        args = list_of_commands[-1].split(',')
+        macro['name'] = list_of_commands[0]
+        macro['num_of_arg'] = len(args)
+        macro['args'] = {}
+        for i in range(0, len(args)):
+            macro['args'][args[i]] = '#' + str(i)
+    if macro_started and 'macro' not in list_of_commands:
+        for arg in macro['args']:
+            in_str = in_str.replace(arg, macro['args'][arg])
+        macro['lines'].append(in_str)
+    if 'endm' in list_of_commands:
+        macro_started = False
+        for line in macro['lines']:
+            print(line)
+        macros.append(macro)
+        macro = {}
+    in_str = input()
+    trim_str = in_str.strip()
+    if(trim_str=='end'):
+        break
