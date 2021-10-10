@@ -1,4 +1,4 @@
-# Using Pyython we created a lexer using a determenistic finite state algorthm
+# Using Python we created a lexer using a determenistic finite state algorthm
 # where the program takes a file, then proceeds by splitting the file into chars
 # Ones split, it goes through various phases. Starting phase being _lexerStart_.
 # Once it begins it goes through each function call it contains and runs through 
